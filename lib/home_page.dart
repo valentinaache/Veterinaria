@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Image.asset(
                       "assets/img/background.png",
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.cover,
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 30),

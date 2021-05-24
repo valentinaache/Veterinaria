@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:veterinaria/MainMenu.dart';
 import 'package:veterinaria/home_page.dart';
+import 'package:veterinaria/landing_register.dart';
 import 'package:veterinaria/sign_in.dart';
 
 void main() {
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomePage(),
         '/sign_in': (context) => SignIn(),
         '/main_menu': (context) => MainMenu(),
+        '/register': (context) => Register(),
       },
     );
   }

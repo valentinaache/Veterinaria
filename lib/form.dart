@@ -118,18 +118,15 @@ class MyCustomFormState extends State<MyCustomForm> {
                 child: InkWell(
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
-                      // If the form is valid, display a snackbar. In the real world,
-                      // you'd often call a server or save the information in a database.
-
                       this
                           .signIn(
                               usernameController.text, passwordController.text)
-                          .then((value) => {if (value.isEmpty) {
-                            print("empty")
-                          }});
-
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Processing Data')));
+                          .then((value) => {
+                                if (value.isEmpty)
+                                  {
+                                    print("empty"),
+                                  }
+                              });
                     }
                   },
                   child: Center(
