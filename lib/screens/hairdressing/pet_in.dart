@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:veterinaria/model/clinic_history.dart';
 import '../../common_widgets/custom_appbar.dart';
+import 'package:http/http.dart' as http;
 
 class PetIn extends StatefulWidget {
   @override
@@ -12,6 +16,30 @@ class _PetInState extends State<PetIn> {
     color: Colors.white,
     fontSize: 15,
   );
+  final _formKey = GlobalKey<FormState>();
+  final petIdController = TextEditingController();
+  final dateController = TextEditingController();
+  final propsController = TextEditingController();
+  final beforeController = TextEditingController();
+
+    Future<dynamic> registerRegistry(Registry registro) async {
+    final response = await http.post(
+      Uri.parse('http://localhost:5000/api/historiaClinica/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'idRegistro': registro.idRegistro.toString(),
+        'nombre': registro.nombre,
+        'propiedades': registro.propiedades,
+        'rutaImagenEntrada': registro.rutaImagenEntrada,
+        'rutaImagenSalida': registro.rutaImagenSalida
+      }),
+    );
+    return jsonDecode(response.body)['insertId'];
+    //Me devuelve el id del animal
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

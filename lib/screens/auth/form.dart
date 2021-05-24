@@ -33,6 +33,7 @@ class MyCustomFormState extends State<MyCustomForm> {
     print(jsonDecode(response.body));
     return jsonDecode(response.body);
   }
+
   TextStyle decor = GoogleFonts.acme(
     color: Colors.white,
     fontSize: 15,
@@ -71,7 +72,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 "Inicio de Sesión",
                 style: GoogleFonts.acme(
                   fontSize: 30,
-                  color:Colors.brown[800],
+                  color: Colors.brown[800],
                 ),
               ),
               SizedBox(height: 45.0),
@@ -125,17 +126,16 @@ class MyCustomFormState extends State<MyCustomForm> {
                   color: Colors.brown[800],
                 ),
                 child: InkWell(
-                  onTap: () {
+                  onTap: () async {
                     if (_formKey.currentState!.validate()) {
-                      this
+                      List <dynamic> data=await this
                           .signIn(
-                              usernameController.text, passwordController.text)
-                          .then((value) => {
-                                if (value.isEmpty)
-                                  {
-                                    print("empty"),
-                                  }
-                              });
+                              usernameController.text, passwordController.text);
+                              if(data.isEmpty){
+                                //No pasa
+                              }else{
+                                Navigator.pushNamed(context, '/main_menu');
+                              }
                     }
                   },
                   child: Center(

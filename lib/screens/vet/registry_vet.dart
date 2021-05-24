@@ -22,7 +22,6 @@ class _FormVetState extends State<FormVet> {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-        'idRegistro': registro.idRegistro.toString(),
         'nombre': registro.nombre,
         'propiedades': registro.propiedades,
         'rutaImagenEntrada': registro.rutaImagenEntrada,
@@ -70,23 +69,6 @@ class _FormVetState extends State<FormVet> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      TextFormField(
-                        controller: registerIdController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          hintText: "Id del Registro",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                        ),
-                      ),
                       SizedBox(height: 25.0),
                       TextFormField(
                         controller: petIdController,
@@ -130,17 +112,17 @@ class _FormVetState extends State<FormVet> {
                           color: Colors.brown[800],
                         ),
                         child: InkWell(
-                          onTap: () {
+                          onTap: () async {
                             if (_formKey.currentState!.validate()) {
                               Registry registry = new Registry(
-                                  int.parse(this.registerIdController.text),
+                                  0,
                                   "Inicio de Historia Clinica",
                                   "No Aplica",
                                   "No Aplica",
                                   "No Aplica");
-                              this.registerRegistry(registry);
+                              int id = await this.registerRegistry(registry);
                               ClinicHistory clinic = new ClinicHistory(
-                                  int.parse(this.registerIdController.text),
+                                  id,
                                   int.parse(this.petIdController.text));
                               this.registerClinicH(clinic);
                             }

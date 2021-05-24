@@ -21,12 +21,11 @@ class _EventVetState extends State<EventVet> {
   final _formKey = GlobalKey<FormState>();
   Future<dynamic> registerRegistry(Registry registro) async {
     final response = await http.post(
-      Uri.parse('http://localhost:5000/api/historiaClinica/'),
+      Uri.parse('http://localhost:5000/api/registro/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-        'idRegistro': registro.idRegistro.toString(),
         'nombre': registro.nombre,
         'propiedades': registro.propiedades,
         'rutaImagenEntrada': registro.rutaImagenEntrada,
@@ -86,24 +85,6 @@ class _EventVetState extends State<EventVet> {
                           contentPadding:
                               EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                           hintText: "Identificacion de la Mascota",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 45.0),
-                      TextFormField(
-                        controller: regIdController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          hintText: "idRegistro",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           ),
@@ -197,19 +178,21 @@ class _EventVetState extends State<EventVet> {
                           color: Colors.brown[800],
                         ),
                         child: InkWell(
-                          onTap: () {
+                          onTap: () async {
                             if (this._formKey.currentState!.validate()) {
                               Registry registry = new Registry(
-                                  int.parse(this.regIdController.text),
+                                  0,
                                   this.regNameController.text,
                                   this.regPropController.text,
                                   this.regPathEController.text,
                                   this.regPathSController.text);
-                              this.registerRegistry(registry);
+                              int id = await this.registerRegistry(registry);
+                              registry.idRegistro = id;
                               ClinicHistory clinic = new ClinicHistory(
-                                  int.parse(this.regIdController.text),
-                                  int.parse(this.petIdController.text),);
+                                  id,
+                                  int.parse(this.petIdController.text));
                               this.registerClinicH(clinic);
+                              
                             }
                           },
                           child: Center(

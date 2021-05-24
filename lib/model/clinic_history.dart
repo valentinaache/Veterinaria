@@ -16,7 +16,7 @@ class Registry {
   String propiedades;
   String rutaImagenEntrada;
   String rutaImagenSalida;
-  Registry(this.idRegistro, this.nombre, this.propiedades,
+  Registry(this.idRegistro,this.nombre, this.propiedades,
       this.rutaImagenEntrada, this.rutaImagenSalida);
   factory Registry.fromJson(Map<String, dynamic> json) {
     return Registry(json['idRegistro'], json['nombre'], json['propiedades'],
