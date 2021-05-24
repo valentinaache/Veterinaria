@@ -76,7 +76,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                   hintText: "Email",
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(5.0),
                   ),
                 ),
               ),
@@ -96,7 +96,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   hintText: "Password",
                   errorText: validatePassword(passwordController.text),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(5.0),
                   ),
                 ),
               ),

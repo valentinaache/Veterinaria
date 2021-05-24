@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:veterinaria/Barber.dart';
 import 'package:veterinaria/MainMenu.dart';
 import 'package:veterinaria/home_page.dart';
 import 'package:veterinaria/landing_register.dart';
 import 'package:veterinaria/sign_in.dart';
+import 'package:veterinaria/Vet.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
         '/sign_in': (context) => SignIn(),
         '/main_menu': (context) => MainMenu(),
         '/register': (context) => Register(),
+        '/vet': (context) => Vet(),
+        '/barber': (context) => Barber(),
       },
     );
   }

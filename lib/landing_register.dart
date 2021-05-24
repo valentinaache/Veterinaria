@@ -13,7 +13,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   TextStyle decor = GoogleFonts.acme(
     color: Colors.white,
-    fontSize: 40,
+    fontSize: 30,
   );
   @override
   Widget build(BuildContext context) {
