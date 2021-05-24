@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:veterinaria/MainMenu.dart';
 import 'package:veterinaria/home_page.dart';
 import 'package:veterinaria/sign_in.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => HomePage(),
         '/sign_in': (context) => SignIn(),
+        '/main_menu': (context) => MainMenu(),
       },
     );
   }
