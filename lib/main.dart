@@ -5,6 +5,7 @@ import 'package:veterinaria/home_page.dart';
 import 'package:veterinaria/landing_register.dart';
 import 'package:veterinaria/sign_in.dart';
 import 'package:veterinaria/Vet.dart';
+import 'package:veterinaria/FormVet.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => Register(),
         '/vet': (context) => Vet(),
         '/barber': (context) => Barber(),
+        '/vet_form': (context) => FormVet(),
       },
     );
   }

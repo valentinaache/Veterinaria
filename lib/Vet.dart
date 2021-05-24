@@ -84,7 +84,7 @@ class _VetState extends State<Vet> {
                 ),
                 child: InkWell(
                   onTap: () {
-                    
+                  Navigator.pushNamed(context, '/vet_form');
                   },
                   child: Center(
                     child: Text(
