@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppBar extends StatelessWidget {
-  TextStyle stiloOpciones = GoogleFonts.aleo(
-    fontWeight: FontWeight.w200
-
+  TextStyle stiloOpciones = GoogleFonts.acme(
+    color: Colors.white,
+    fontSize: 20,
   );
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Container(
-      color: Colors.red,
+      color: Colors.brown,
       height: height * 0.2,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -21,32 +21,14 @@ class CustomAppBar extends StatelessWidget {
               left: 40,
             ),
             child: Image.asset(
-              "assets/img/bell.png",
-              width: width * 0.125,
-              height: width * 0.125,
+              "assets/img/logo.png",
+              width: 50,
+              height: 50,
             ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              InkWell(
-                child: Text(
-                  "Inicio",
-                  style: stiloOpciones,
-                ),
-              ),
-              SizedBox(
-                width: width * 0.04,
-              ),
-              InkWell(
-                child: Text(
-                  "Acerca de Nosotros",
-                  style: stiloOpciones,
-                ),
-              ),
-              SizedBox(
-                width: width * 0.04,
-              ),
               InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, '/sign_in');

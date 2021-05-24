@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:veterinaria/common_widgets/custom_appbar.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,10 +18,53 @@ class _HomePageState extends State<HomePage> {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
-        child: Column(
-          children: [
-            CustomAppBar(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomAppBar(),
+              Container(
+                height: height,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Image.asset(
+                      "assets/img/background.png",
+                      fit: BoxFit.fitWidth,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 30),
+                      child: Text(
+                        "Planeta Animal 2000",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.acme(
+                          fontSize: 40,
+                          color: Colors.brown[800],
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: 
+                      
+                      Container(
+                        color: Colors.brown[800],
+                        width: 150,
+                        
+                          child: Text(
+                          "¡Bienvenido!",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.acme(
+                            fontSize: 25,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
