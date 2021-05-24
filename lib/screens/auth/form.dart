@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import '../../common_widgets/validators.dart';
 
 class MyCustomForm extends StatefulWidget {
   @override
@@ -81,13 +82,16 @@ class MyCustomFormState extends State<MyCustomForm> {
                 controller: usernameController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
+                    return 'Coloca algo de texto';
+                  }
+                  if (!value.isValidPhone) {
+                    return 'Por favor ingresa solamente numeros';
                   }
                   return null;
                 },
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                  hintText: "Email",
+                  hintText: "Ingresa tu documento",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
@@ -99,7 +103,10 @@ class MyCustomFormState extends State<MyCustomForm> {
                 style: style,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
+                    return 'Por favor coloca una contraseña';
+                  }
+                  if (!value.isValidPassword) {
+                    return 'Por favor coloca una contraseña válida, recuerda: minimo 8 caracteres, incluye caracteres alfanumericos y especiales';
                   }
                   return null;
                 },
@@ -128,14 +135,13 @@ class MyCustomFormState extends State<MyCustomForm> {
                 child: InkWell(
                   onTap: () async {
                     if (_formKey.currentState!.validate()) {
-                      List <dynamic> data=await this
-                          .signIn(
-                              usernameController.text, passwordController.text);
-                              if(data.isEmpty){
-                                //No pasa
-                              }else{
-                                Navigator.pushNamed(context, '/main_menu');
-                              }
+                      List<dynamic> data = await this.signIn(
+                          usernameController.text, passwordController.text);
+                      if (data.isEmpty) {
+                        //No pasa
+                      } else {
+                        Navigator.pushNamed(context, '/main_menu');
+                      }
                     }
                   },
                   child: Center(

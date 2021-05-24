@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:veterinaria/common_widgets/custom_appbar.dart';
 import 'package:http/http.dart' as http;
 import 'package:veterinaria/model/clinic_history.dart';
+import 'package:veterinaria/common_widgets/validators.dart';
 
 class EventVet extends StatefulWidget {
   @override
@@ -84,7 +85,10 @@ class _EventVetState extends State<EventVet> {
                         controller: petIdController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return 'Coloca algo de texto';
+                          }
+                          if (!value.isValidPhone) {
+                            return 'Por favor ingresa solamente numeros';
                           }
                           return null;
                         },
@@ -102,7 +106,10 @@ class _EventVetState extends State<EventVet> {
                         controller: regNameController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return 'Coloca algo de texto';
+                          }
+                          if (!value.isValidName) {
+                            return 'Por favor ingresa un nombre adecuado';
                           }
                           return null;
                         },
@@ -122,7 +129,10 @@ class _EventVetState extends State<EventVet> {
                         controller: regPropController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return 'Coloca algo de texto';
+                          }
+                          if (!value.isValidName) {
+                            return 'Por favor ingresa un nombre adecuado';
                           }
                           return null;
                         },
@@ -140,7 +150,7 @@ class _EventVetState extends State<EventVet> {
                         controller: regPathSController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return 'Coloca algo de texto';
                           }
                           return null;
                         },
@@ -157,8 +167,8 @@ class _EventVetState extends State<EventVet> {
                       TextFormField(
                         controller: regPathEController,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                         if (value == null || value.isEmpty) {
+                            return 'Coloca algo de texto';
                           }
                           return null;
                         },
@@ -211,7 +221,7 @@ class _EventVetState extends State<EventVet> {
                                 int idClinic =
                                     await this.registerClinicH(clinic);
                               } catch (e) {
-                                 ScaffoldMessenger.of(context).showSnackBar(
+                                ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                         content: Text('Ocurrio un Error')));
                                 print(e.toString());

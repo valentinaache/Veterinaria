@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:veterinaria/model/clinic_history.dart';
 import 'package:http/http.dart' as http;
+import 'package:veterinaria/common_widgets/validators.dart';
 
 import '../../common_widgets/custom_appbar.dart';
 
@@ -77,8 +78,12 @@ class _PetOutState extends State<PetOut> {
                         controller: petIdController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return 'Coloca algo de texto';
                           }
+                          if (!value.isValidPhone) {
+                            return 'Por favor ingresa solamente numeros';
+                          }
+                          
                           return null;
                         },
                         decoration: InputDecoration(
@@ -95,7 +100,7 @@ class _PetOutState extends State<PetOut> {
                         controller: dateController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return 'Coloca algo de texto';
                           }
                           return null;
                         },
@@ -114,8 +119,8 @@ class _PetOutState extends State<PetOut> {
                       TextFormField(
                         controller: propsController,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                           if (value == null || value.isEmpty) {
+                            return 'Coloca algo de texto';
                           }
                           return null;
                         },
@@ -132,8 +137,8 @@ class _PetOutState extends State<PetOut> {
                       TextFormField(
                         controller: beforeController,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                           if (value == null || value.isEmpty) {
+                            return 'Coloca algo de texto';
                           }
                           return null;
                         },

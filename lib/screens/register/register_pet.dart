@@ -6,6 +6,7 @@ import 'package:veterinaria/common_widgets/custom_appbar.dart';
 import 'package:http/http.dart' as http;
 import 'package:veterinaria/model/animalType.dart';
 import 'package:veterinaria/model/raza.dart';
+import 'package:veterinaria/common_widgets/validators.dart';
 
 //Doctores, Usuarios, Mascotas
 
@@ -149,10 +150,13 @@ class _RegisterPetState extends State<RegisterPet> {
                       style: style,
                       controller: petNameController,
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
+                         if (value == null || value.isEmpty) {
+                            return 'Coloca algo de texto';
+                          }
+                          if (!value.isValidName) {
+                            return 'Por favor ingresa un nombre adecuado';
+                          }
+                          return null;
                       },
                       decoration: InputDecoration(
                         contentPadding:

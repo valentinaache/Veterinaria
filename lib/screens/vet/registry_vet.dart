@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:veterinaria/common_widgets/custom_appbar.dart';
 import 'package:http/http.dart' as http;
 import 'package:veterinaria/model/clinic_history.dart';
+import 'package:veterinaria/common_widgets/validators.dart';
 
 class FormVet extends StatefulWidget {
   @override
@@ -73,9 +74,13 @@ class _FormVetState extends State<FormVet> {
                       TextFormField(
                         controller: petIdController,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                         if (value == null || value.isEmpty) {
+                            return 'Coloca algo de texto';
                           }
+                          if (!value.isValidPhone) {
+                            return 'Por favor ingresa solamente numeros';
+                          }
+                          
                           return null;
                         },
                         decoration: InputDecoration(
@@ -89,6 +94,16 @@ class _FormVetState extends State<FormVet> {
                       ),
                       SizedBox(height: 25.0),
                       TextFormField(
+                        validator: (value) {
+                         if (value == null || value.isEmpty) {
+                            return 'Coloca algo de texto';
+                          }
+                          if (!value.isValidPhone) {
+                            return 'Por favor ingresa solamente numeros';
+                          }
+                          
+                          return null;
+                        },
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),

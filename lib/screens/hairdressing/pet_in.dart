@@ -75,8 +75,8 @@ class _PetInState extends State<PetIn> {
                       TextFormField(
                         controller: petIdController,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                           if (value == null || value.isEmpty) {
+                            return 'Coloca algo de texto';
                           }
                           return null;
                         },
@@ -93,8 +93,8 @@ class _PetInState extends State<PetIn> {
                       TextFormField(
                         controller: dateController,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                           if (value == null || value.isEmpty) {
+                            return 'Coloca algo de texto';
                           }
                           return null;
                         },
@@ -113,8 +113,8 @@ class _PetInState extends State<PetIn> {
                       TextFormField(
                         controller: propsController,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                           if (value == null || value.isEmpty) {
+                            return 'Coloca algo de texto';
                           }
                           return null;
                         },
@@ -131,8 +131,8 @@ class _PetInState extends State<PetIn> {
                       TextFormField(
                         controller: beforeController,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                           if (value == null || value.isEmpty) {
+                            return 'Coloca algo de texto';
                           }
                           return null;
                         },
