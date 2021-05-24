@@ -47,7 +47,14 @@ class _EventVetState extends State<EventVet> {
         'idAnimal': clinic.idAnimal.toString(),
       }),
     );
-    return jsonDecode(response.body)['insertId'];
+    if (response.statusCode == 200 ||
+        response.statusCode == 204 ||
+        response.statusCode == 304) {
+      return jsonDecode(response.body)['insertId'];
+    } else {
+      throw Exception('Failed to load album');
+    }
+
     //Me devuelve el id del animal
   }
 
@@ -187,12 +194,23 @@ class _EventVetState extends State<EventVet> {
                                   this.regPathEController.text,
                                   this.regPathSController.text);
                               int id = await this.registerRegistry(registry);
+                              if (id != null || id != 0) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text('Guardado Exitoso')));
+                              }
                               registry.idRegistro = id;
                               ClinicHistory clinic = new ClinicHistory(
-                                  id,
-                                  int.parse(this.petIdController.text));
-                              this.registerClinicH(clinic);
-                              
+                                  id, int.parse(this.petIdController.text));
+                              try {
+                                int idClinic =
+                                    await this.registerClinicH(clinic);
+                              } catch (e) {
+                                 ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text('Ocurrio un Error')));
+                                print(e.toString());
+                              }
                             }
                           },
                           child: Center(

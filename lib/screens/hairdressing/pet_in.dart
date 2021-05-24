@@ -24,12 +24,11 @@ class _PetInState extends State<PetIn> {
 
     Future<dynamic> registerRegistry(Registry registro) async {
     final response = await http.post(
-      Uri.parse('http://localhost:5000/api/historiaClinica/'),
+      Uri.parse('http://localhost:5000/api/registro/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-        'idRegistro': registro.idRegistro.toString(),
         'nombre': registro.nombre,
         'propiedades': registro.propiedades,
         'rutaImagenEntrada': registro.rutaImagenEntrada,
@@ -39,7 +38,21 @@ class _PetInState extends State<PetIn> {
     return jsonDecode(response.body)['insertId'];
     //Me devuelve el id del animal
   }
-  
+
+  Future<dynamic> registerClinicH(ClinicHistory clinic) async {
+    final response = await http.post(
+      Uri.parse('http://localhost:5000/api/historiaClinica/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'idRegistro': clinic.idRegistro.toString(),
+        'idAnimal': clinic.idAnimal.toString(),
+      }),
+    );
+    return jsonDecode(response.body)['insertId'];
+    //Me devuelve el id del animal
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,12 +66,20 @@ class _PetInState extends State<PetIn> {
               child: Padding(
                 padding: const EdgeInsets.all(36.0),
                 child: Form(
+                  key: _formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(height: 45.0),
                       TextFormField(
+                        controller: petIdController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -70,6 +91,13 @@ class _PetInState extends State<PetIn> {
                       ),
                       SizedBox(height: 25.0),
                       TextFormField(
+                        controller: dateController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -83,6 +111,13 @@ class _PetInState extends State<PetIn> {
                         height: 35.0,
                       ),
                       TextFormField(
+                        controller: propsController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -94,6 +129,13 @@ class _PetInState extends State<PetIn> {
                       ),
                       SizedBox(height: 25.0),
                       TextFormField(
+                        controller: beforeController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -115,7 +157,22 @@ class _PetInState extends State<PetIn> {
                           color: Colors.brown[800],
                         ),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () async {
+                            if (this._formKey.currentState!.validate()) {
+                              Registry registry = new Registry(
+                                  0,
+                                  "Ingreso Peluqueria",
+                                  this.propsController.text,
+                                  this.beforeController.text,
+                                  "No Valido Aun");
+                              int id = await this.registerRegistry(registry);
+                              registry.idRegistro = id;
+                              ClinicHistory clinic = new ClinicHistory(
+                                  id,
+                                  int.parse(this.petIdController.text));
+                              this.registerClinicH(clinic);
+                            }
+                          },
                           child: Center(
                             child: Text(
                               "Guardar",
