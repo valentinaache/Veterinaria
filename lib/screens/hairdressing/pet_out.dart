@@ -156,6 +156,12 @@ class _PetOutState extends State<PetOut> {
                         decoration: BoxDecoration(
                           color: Colors.brown[800],
                         ),
+
+
+
+
+
+
                         child: InkWell(
                           onTap: () async {
                             if (this._formKey.currentState!.validate()) {
@@ -166,6 +172,7 @@ class _PetOutState extends State<PetOut> {
                                   "Entrada Ya Efectuada",
                                   this.beforeController.text);
                               int id = await this.registerRegistry(registry);
+                              
                               registry.idRegistro = id;
                               ClinicHistory clinic = new ClinicHistory(
                                   id,

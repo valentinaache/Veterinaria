@@ -39,7 +39,7 @@ class _LandingRegisterState extends State<LandingRegister> {
           ),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, '/vet');
+              Navigator.pushNamed(context, '/');
             },
             child: Center(
               child: Padding(
@@ -48,26 +48,7 @@ class _LandingRegisterState extends State<LandingRegister> {
                   color: Colors.brown[800],
                   width: 200,
                   child: Text(
-                    "Registro de Doctores",
-                    style: decor,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/barber');
-            },
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.all(30),
-                child: Container(
-                  color: Colors.brown[800],
-                  width: 200,
-                  child: Text(
-                    "Registro de Usuarios",
+                    "Registro de Dueño",
                     style: decor,
                     textAlign: TextAlign.center,
                   ),

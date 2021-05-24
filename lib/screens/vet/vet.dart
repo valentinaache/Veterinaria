@@ -151,6 +151,9 @@ class _VetState extends State<Vet> {
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
                   Container(
                     height: 40,
                     width: 180,
@@ -283,7 +286,12 @@ class _VetState extends State<Vet> {
                   return Text("Estamos Cargando la Información");
                 },
               )
-            : Text("Los resultados de tus busquedas Aparecerán aca"),
+            : Text("Los resultados de tus búsqueda aparecerán acá",
+            style: GoogleFonts.acme(
+              color: Colors.brown[800],
+              fontSize: 25,
+            ),
+            ),
       ]),
     );
   }

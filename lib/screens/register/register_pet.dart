@@ -17,7 +17,7 @@ class RegisterPet extends StatefulWidget {
 class _RegisterPetState extends State<RegisterPet> {
   TextStyle decor = GoogleFonts.acme(
     color: Colors.white,
-    fontSize: 40,
+    fontSize: 20,
   );
   String dropdownType = "1";
   String dropdownRaza = "1";
@@ -209,9 +209,9 @@ class _RegisterPetState extends State<RegisterPet> {
                             }).toList(),
                           );
                         } else if (snapshot.hasError) {
-                          return Text("No funciona socio");
+                          return Text("No funciona");
                         }
-                        return Text("No tenemos aun ninguna categoría llenada");
+                        return Text("No se encuentra ninguna categoría llenada");
                       },
                     ),
                     SizedBox(height: 25.0),
@@ -242,9 +242,9 @@ class _RegisterPetState extends State<RegisterPet> {
                             }).toList(),
                           );
                         } else if (snapshot.hasError) {
-                          return Text("No funciona socio");
+                          return Text("No funciona");
                         }
-                        return Text("No tenemos aun ninguna categoría llenada");
+                        return Text("No se encuentra ninguna categoría llenada");
                       },
                     ),
                     SizedBox(
@@ -252,16 +252,17 @@ class _RegisterPetState extends State<RegisterPet> {
                     ),
                     Container(
                       height: 40,
-                      width: width * 0.25,
+                      width: 200,
                       padding: EdgeInsets.symmetric(
                         horizontal: 10,
                       ),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        color: Colors.grey.shade300,
+                        color: Colors.brown[800],
                       ),
+
+
+
+
                       child: InkWell(
                         onTap: () async {
                           if (_formKey.currentState!.validate()) {
@@ -286,6 +287,7 @@ class _RegisterPetState extends State<RegisterPet> {
                           child: Text(
                             "Registrar Mascota",
                             textAlign: TextAlign.center,
+                            style: decor,
                           ),
                         ),
                       ),
