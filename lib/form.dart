@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 class MyCustomForm extends StatefulWidget {
@@ -32,6 +33,10 @@ class MyCustomFormState extends State<MyCustomForm> {
     print(jsonDecode(response.body));
     return jsonDecode(response.body);
   }
+  TextStyle decor = GoogleFonts.acme(
+    color: Colors.white,
+    fontSize: 15,
+  );
 
   @override
   void dispose() {
@@ -62,6 +67,13 @@ class MyCustomFormState extends State<MyCustomForm> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Text(
+                "Inicio de Sesión",
+                style: GoogleFonts.acme(
+                  fontSize: 30,
+                  color:Colors.brown[800],
+                ),
+              ),
               SizedBox(height: 45.0),
               TextFormField(
                 style: style,
@@ -76,7 +88,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                   hintText: "Email",
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(5.0),
                   ),
                 ),
               ),
@@ -96,7 +108,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   hintText: "Password",
                   errorText: validatePassword(passwordController.text),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(5.0),
                   ),
                 ),
               ),
@@ -110,10 +122,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   horizontal: 10,
                 ),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
-                  ),
-                  color: Colors.grey.shade300,
+                  color: Colors.brown[800],
                 ),
                 child: InkWell(
                   onTap: () {
@@ -131,8 +140,9 @@ class MyCustomFormState extends State<MyCustomForm> {
                   },
                   child: Center(
                     child: Text(
-                      "Ingresa a tu red",
+                      "Iniciar Sesión",
                       textAlign: TextAlign.center,
+                      style: decor,
                     ),
                   ),
                 ),
