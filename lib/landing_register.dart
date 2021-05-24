@@ -17,7 +17,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   TextStyle decor = GoogleFonts.acme(
     color: Colors.white,
-    fontSize: 30,
+    fontSize: 40,
   );
   String dropdownType = "1";
   String dropdownRaza = "1";
@@ -298,8 +298,8 @@ class _RegisterState extends State<Register> {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
