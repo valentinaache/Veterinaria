@@ -84,9 +84,6 @@ class _PetInState extends State<PetIn> {
                           horizontal: 10,
                         ),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(5),
-                          ),
                           color: Colors.brown[800],
                         ),
                         child: InkWell(
@@ -115,9 +112,6 @@ class _PetInState extends State<PetIn> {
                 horizontal: 10,
               ),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
                 color: Colors.brown[800],
               ),
               child: InkWell(

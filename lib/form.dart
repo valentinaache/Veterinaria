@@ -122,9 +122,6 @@ class MyCustomFormState extends State<MyCustomForm> {
                   horizontal: 10,
                 ),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(5),
-                  ),
                   color: Colors.brown[800],
                 ),
                 child: InkWell(
