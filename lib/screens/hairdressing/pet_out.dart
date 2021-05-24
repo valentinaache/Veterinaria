@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'common_widgets/custom_appbar.dart';
 
-class PetIn extends StatefulWidget {
+import '../../common_widgets/custom_appbar.dart';
+class PetOut extends StatefulWidget {
   @override
-  _PetInState createState() => _PetInState();
+  _PetOutState createState() => _PetOutState();
 }
 
-class _PetInState extends State<PetIn> {
- TextStyle decor = GoogleFonts.acme(
+class _PetOutState extends State<PetOut> {
+  TextStyle decor = GoogleFonts.acme(
     color: Colors.white,
     fontSize: 15,
   );
@@ -58,18 +58,7 @@ class _PetInState extends State<PetIn> {
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          hintText: "Propiedades",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 25.0),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          hintText: "Subir foto, antes",
+                          hintText: "Subir foto, después",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           ),

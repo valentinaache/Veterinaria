@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:veterinaria/common_widgets/custom_appbar.dart';
-import 'package:veterinaria/form.dart';
+import 'package:veterinaria/screens/auth/form.dart';
 
 class SignIn extends StatefulWidget {
   @override

@@ -9,12 +9,12 @@ import 'package:veterinaria/model/raza.dart';
 
 //Doctores, Usuarios, Mascotas
 
-class Register extends StatefulWidget {
+class RegisterPet extends StatefulWidget {
   @override
-  _RegisterState createState() => _RegisterState();
+  _RegisterPetState createState() => _RegisterPetState();
 }
 
-class _RegisterState extends State<Register> {
+class _RegisterPetState extends State<RegisterPet> {
   TextStyle decor = GoogleFonts.acme(
     color: Colors.white,
     fontSize: 40,
@@ -280,12 +280,11 @@ class _RegisterState extends State<Register> {
                               idRaza = razaTipo.first['idRaza'];
                             }
                             this.registerTypeRazaPet(idRaza, petId.toString());
-                            
                           }
                         },
                         child: Center(
                           child: Text(
-                            "Ingresa a tu red",
+                            "Registrar Mascota",
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -293,6 +292,25 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(
                       height: 15.0,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/register');
+                      },
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(30),
+                          child: Container(
+                            color: Colors.brown[800],
+                            width: 200,
+                            child: Text(
+                              "Volver",
+                              style: decor,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

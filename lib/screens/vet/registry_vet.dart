@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:veterinaria/common_widgets/custom_appbar.dart';
+import 'package:http/http.dart' as http;
+import 'package:veterinaria/model/clinic_history.dart';
 
 class FormVet extends StatefulWidget {
   @override
@@ -8,6 +12,42 @@ class FormVet extends StatefulWidget {
 }
 
 class _FormVetState extends State<FormVet> {
+  final petIdController = TextEditingController();
+  final registerIdController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  Future<dynamic> registerRegistry(Registry registro) async {
+    final response = await http.post(
+      Uri.parse('http://localhost:5000/api/registro/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'idRegistro': registro.idRegistro.toString(),
+        'nombre': registro.nombre,
+        'propiedades': registro.propiedades,
+        'rutaImagenEntrada': registro.rutaImagenEntrada,
+        'rutaImagenSalida': registro.rutaImagenSalida
+      }),
+    );
+    return jsonDecode(response.body)['insertId'];
+    //Me devuelve el id del animal
+  }
+
+  Future<dynamic> registerClinicH(ClinicHistory clinic) async {
+    final response = await http.post(
+      Uri.parse('http://localhost:5000/api/historiaClinica/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'idRegistro': clinic.idRegistro.toString(),
+        'idAnimal': clinic.idAnimal.toString(),
+      }),
+    );
+    return jsonDecode(response.body)['insertId'];
+    //Me devuelve el id del animal
+  }
+
   TextStyle decor = GoogleFonts.acme(
     color: Colors.white,
     fontSize: 15,
@@ -25,16 +65,23 @@ class _FormVetState extends State<FormVet> {
               child: Padding(
                 padding: const EdgeInsets.all(36.0),
                 child: Form(
+                  key: _formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      SizedBox(height: 45.0),
                       TextFormField(
+                        controller: registerIdController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          hintText: "Email",
+                          hintText: "Id del Registro",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           ),
@@ -42,19 +89,13 @@ class _FormVetState extends State<FormVet> {
                       ),
                       SizedBox(height: 25.0),
                       TextFormField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          hintText: "Fecha de Nacimiento",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 35.0,
-                      ),
-                      TextFormField(
+                        controller: petIdController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -76,51 +117,6 @@ class _FormVetState extends State<FormVet> {
                         ),
                       ),
                       SizedBox(height: 25.0),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          hintText: "Animal",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 25.0),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          hintText: "Raza",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 25.0),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          hintText: "Propiedades",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 25.0),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          hintText: "Subir archivo",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 25.0),
-
                       Container(
                         height: 50,
                         width: 120,
@@ -134,7 +130,21 @@ class _FormVetState extends State<FormVet> {
                           color: Colors.brown[800],
                         ),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            if (_formKey.currentState!.validate()) {
+                              Registry registry = new Registry(
+                                  int.parse(this.registerIdController.text),
+                                  "Inicio de Historia Clinica",
+                                  "No Aplica",
+                                  "No Aplica",
+                                  "No Aplica");
+                              this.registerRegistry(registry);
+                              ClinicHistory clinic = new ClinicHistory(
+                                  int.parse(this.registerIdController.text),
+                                  int.parse(this.petIdController.text));
+                              this.registerClinicH(clinic);
+                            }
+                          },
                           child: Center(
                             child: Text(
                               "Crear Historia",
