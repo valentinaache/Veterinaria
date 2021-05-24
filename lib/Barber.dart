@@ -15,7 +15,7 @@ class _BarberState extends State<Barber> {
   Widget build(BuildContext context) {
     return Scaffold(
           body: Column(
-                      
+                       
                       ),
             
     );

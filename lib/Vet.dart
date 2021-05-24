@@ -95,6 +95,34 @@ class _VetState extends State<Vet> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 15.0,
+              ),
+              Container(
+                height: 40,
+                width: 180,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(5),
+                  ),
+                  color: Colors.brown[800],
+                ),
+                child: InkWell(
+                  onTap: () {
+                   Navigator.pushNamed(context, '/main_menu');
+                  },
+                  child: Center(
+                    child: Text(
+                      "Volver",
+                      textAlign: TextAlign.center,
+                      style: decor,
+                    ),
+                  ),
+                ),
+              ),
 
 
             ],
