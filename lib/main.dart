@@ -3,9 +3,11 @@ import 'package:veterinaria/Barber.dart';
 import 'package:veterinaria/MainMenu.dart';
 import 'package:veterinaria/home_page.dart';
 import 'package:veterinaria/landing_register.dart';
+import 'package:veterinaria/pet_out.dart';
 import 'package:veterinaria/sign_in.dart';
 import 'package:veterinaria/Vet.dart';
 import 'package:veterinaria/FormVet.dart';
+import 'package:veterinaria/pet_in.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,6 +31,8 @@ class MyApp extends StatelessWidget {
         '/vet': (context) => Vet(),
         '/barber': (context) => Barber(),
         '/vet_form': (context) => FormVet(),
+        '/pet_in': (context) => PetIn(),
+        '/pet_out': (context) => PetOut(),
       },
     );
   }
