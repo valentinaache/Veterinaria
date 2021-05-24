@@ -15,7 +15,7 @@ class _SignInState extends State<SignIn> {
         color: Colors.white,
         child: Column(
           children: [
-            CustomAppBar(),
+            CustomAppBar(true),
             MyCustomForm(),
           ],
         ),

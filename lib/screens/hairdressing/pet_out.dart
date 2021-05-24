@@ -61,7 +61,7 @@ class _PetOutState extends State<PetOut> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(),
+            CustomAppBar(false),
             Container(
               width: 400,
               color: Colors.white,

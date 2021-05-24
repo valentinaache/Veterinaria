@@ -12,7 +12,7 @@ class MainMenu extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(),
+          CustomAppBar(false),
           
           InkWell(
             onTap: () {

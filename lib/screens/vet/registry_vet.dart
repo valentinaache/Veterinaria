@@ -58,7 +58,7 @@ class _FormVetState extends State<FormVet> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(),
+            CustomAppBar(false),
             Container(
               width: 400,
               color: Colors.white,

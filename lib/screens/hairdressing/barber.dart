@@ -17,7 +17,7 @@ class _BarberState extends State<Barber> {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(),
+          CustomAppBar(false),
            Padding(
             padding: EdgeInsets.all(40),
             child: Container(

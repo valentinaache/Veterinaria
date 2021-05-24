@@ -17,7 +17,7 @@ class _LandingRegisterState extends State<LandingRegister> {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(),
+          CustomAppBar(false),
           InkWell(
             onTap: () {
               Navigator.pushNamed(context, '/register_pet');

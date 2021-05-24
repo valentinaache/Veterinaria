@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppBar extends StatelessWidget {
+  final signIn;
+  CustomAppBar(this.signIn);
   TextStyle stiloOpciones = GoogleFonts.acme(
     color: Colors.white,
     fontSize: 20,
@@ -34,7 +36,7 @@ class CustomAppBar extends StatelessWidget {
                   Navigator.pushNamed(context, '/sign_in');
                 },
                 child: Text(
-                  "Ingresar",
+                  this.signIn?"Ingresar":"Cerrar Sesion",
                   style: stiloOpciones,
                 ),
               ),

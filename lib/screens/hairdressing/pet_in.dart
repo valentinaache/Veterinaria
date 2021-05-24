@@ -59,7 +59,7 @@ class _PetInState extends State<PetIn> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(),
+            CustomAppBar(false),
             Container(
               width: 400,
               color: Colors.white,

@@ -127,7 +127,7 @@ class _RegisterPetState extends State<RegisterPet> {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(),
+          CustomAppBar(false),
           Text(
             "Registra a tu mascota",
             style: TextStyle(

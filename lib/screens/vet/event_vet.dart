@@ -69,7 +69,7 @@ class _EventVetState extends State<EventVet> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(),
+            CustomAppBar(false),
             Container(
               width: 400,
               color: Colors.white,

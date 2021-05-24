@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CustomAppBar(),
+              CustomAppBar(true),
               Container(
                 height: height,
                 child: Stack(
